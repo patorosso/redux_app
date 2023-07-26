@@ -4,7 +4,7 @@ import "./index.css";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import configureStore from "./store/configureStore";
-import * as actions from "./store/bugs";
+import { bugAdded, bugResolved, getUnresolvedBugs } from "./store/bugs";
 
 const store = configureStore();
 
@@ -12,8 +12,13 @@ store.subscribe(() => {
   console.log("Store changed!");
 });
 
-store.dispatch(actions.bugAdded("Bug 1"));
-store.dispatch(actions.bugResolved({ id: 1 }));
+store.dispatch(bugAdded("Bug 1"));
+store.dispatch(bugAdded("Bug 2"));
+store.dispatch(bugAdded("Bug 3"));
+store.dispatch(bugResolved({ id: 1 }));
+
+const unresolvedBugs = getUnresolvedBugs(store.getState());
+console.log(unresolvedBugs);
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
