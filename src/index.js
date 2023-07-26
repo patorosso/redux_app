@@ -1,10 +1,21 @@
-import React from 'react';
-import ReactDOM from 'react-dom/client';
-import './index.css';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
+import React from "react";
+import ReactDOM from "react-dom/client";
+import "./index.css";
+import App from "./App";
+import reportWebVitals from "./reportWebVitals";
+import configureStore from "./store/configureStore";
+import * as actions from "./store/bugs";
 
-const root = ReactDOM.createRoot(document.getElementById('root'));
+const store = configureStore();
+
+store.subscribe(() => {
+  console.log("Store changed!");
+});
+
+store.dispatch(actions.bugAdded("Bug 1"));
+store.dispatch(actions.bugResolved({ id: 1 }));
+
+const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
     <App />

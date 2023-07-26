@@ -1,10 +1,7 @@
-import React, { useContext } from "react";
-import StoreContext from "./../context/storeContext";
+import React from "react";
 
-function Bugs() {
-  const storeContext = useContext(StoreContext);
-
+const Bugs = () => {
   return <div>Bugs</div>;
-}
+};
 
 export default Bugs;
